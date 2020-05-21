@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import { render } from 'react-dom'
-import { Map, Marker, Popup, TileLayer, CircleMarker, Polyline, ZoomControl } from 'react-leaflet'
+import React, { useEffect } from 'react';
+import { Map, Marker, TileLayer, CircleMarker, Polyline, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
 
 
-const greenIcon = new L.Icon({
-  iconUrl: 'icon.png',
-  iconSize: [10, 10],
+
+var greenIcon = L.icon({
+    iconUrl: require('../media/icon.png'),
+    iconSize: [15, 15]
 });
 
 const geoViewport = require('@mapbox/geo-viewport');
@@ -40,7 +40,7 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker}) => {
   useEffect(getBounds, [bounds]);
 
 	return (
-    <Map zoom={mapBounds.zoom-1} center={mapBounds.center} id="map" preferCanvas={true} noMoveStart={true}>
+    <Map zoom={mapBounds.zoom-1} center={mapBounds.center} id="map" preferCanvas={true}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

@@ -6,7 +6,7 @@ import { faBars, faTimes} from '@fortawesome/free-solid-svg-icons'
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
-import theme from './theme'
+import theme from '../theme'
 
 
 

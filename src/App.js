@@ -1,21 +1,13 @@
 import React from "react";
-import { makeStyles } from '@material-ui/core/styles';
-import GPXMap from './Map';
-import Overlay from './Overlay';
-import Loader from './Loader';
-import Draw from './Draw';
+import GPXMap from './components/Map';
+import Overlay from './components/Overlay';
+import Loader from './components/Loader';
+import Draw from './components/Draw';
 
 import {SportsLib} from '@sports-alliance/sports-lib';
 import { saveAs } from 'file-saver';
 
-var o2x = require('object-to-xml');
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-    	width: "100%",
-    	height: "100%"
-     }
-}));
 
 
 export default function App() {
@@ -184,6 +176,7 @@ export default function App() {
 			if (e > (avg + sd2)) {
 				errors.push(i);
 			}
+			return null;
 		});
 
 		//ADD FIRST AND LAST INCASE THOSE ARE THE ERRORS
