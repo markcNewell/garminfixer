@@ -7,6 +7,8 @@ import Draw from './components/Draw';
 import {SportsLib} from '@sports-alliance/sports-lib';
 import { saveAs } from 'file-saver';
 
+import { serializeObj } from './utils/gpxSerializer';
+
 
 
 
@@ -20,6 +22,8 @@ export default function App() {
 
 	const [markers, setMarkers] = React.useState([]);
 	const [bounds, setBounds] = React.useState([[36.5, -12.5],[62.5, 12.5]]);
+	const [step, setStep] = React.useState(100);
+
 
 
 
@@ -191,14 +195,11 @@ export default function App() {
 
 
 	const onSave = () => {
-		/*
-		//SAVE DATA
-		var json_str = JSON.stringify(event);
-		console.log(event);
+		var obj = serializeObj(event, markers);
 
-		var blob = new Blob([o2x(event)], {type: "application/gpx+xml;charset=utf-8"});
-		saveAs(blob, "hello world.gpx");
-		*/
+		var blob = new Blob([obj], {type: "application/gpx+xml;charset=utf-8"});
+		saveAs(blob, "StravaFixer.gpx");
+
 	};
 
 
@@ -215,8 +216,9 @@ export default function App() {
 				updateUserMarkers={updateMarkerPosition}
 				addUserMarker={addMarker}
 				bounds={bounds}
+				step={step}
 			/>
-			<Draw onSave={onSave}/>
+			<Draw onSave={onSave} step={step} setStep={setStep}/>
 		</React.Fragment>
 	);
 }

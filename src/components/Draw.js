@@ -6,17 +6,22 @@ import { faBars, faTimes} from '@fortawesome/free-solid-svg-icons'
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
-import theme from '../theme'
+import theme from '../theme';
+
+import { useHistory } from 'react-router-dom';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Slider from '@material-ui/core/Slider';
 
 
 
 
 
-const drawerWidth = '200px';
+const drawerWidth = '300px';
 
 const useStyles = makeStyles({
     root: {
-        marginLeft: 50,
+        marginLeft: 52,
         letterSpacing: 5,
         position: "relative",
         zIndex: 2
@@ -61,13 +66,51 @@ const useStyles = makeStyles({
             width: theme.spacing(9) + 1,
         },
     },
+    settings: {
+        marginLeft: 60,
+    },
+    text: {
+        letterSpacing: 5,
+        fontSize: "0.875rem",
+        fontWeight: 500,
+        lineHeight: 1.75,
+        marginTop: 10
+    },
+    slider: {
+        margin: "20px 0px 20px 20px",
+        width: 180,
+    },
+    mark: {
+        color: "#ACACAC"
+    }
 });
 
 
+const marks = [
+  {
+    value: 0,
+    label: 'none',
+  },
+  {
+    value: 100,
+    label: '100',
+  },
+  {
+    value: 200,
+    label: 'max',
+  },
+];
 
-const ConsoleNav = ({onSave}) => {
+function valuetext(value) {
+  return `${value}°C`;
+}
+
+const ConsoleNav = ({onSave, step, setStep}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+
+    //const history = useHistory();
+
 
     const openDraw = () => {
         setOpen(true);
@@ -75,6 +118,12 @@ const ConsoleNav = ({onSave}) => {
     const closeDraw = () => {
         setOpen(false);
     };
+    const redirect = () => {
+        //history.push("http://github.com/markcNewell");
+    }
+    const updateStep = (e,v) => {
+        setStep(v);
+    }
 
     
 
@@ -107,6 +156,29 @@ const ConsoleNav = ({onSave}) => {
 
                     <li>
                         <Button color="inherit" classes={{ root: classes.root }} onClick={onSave}>Save</Button>
+                    </li>
+
+                    <Divider variant="inset" component="li" />
+                    <li className={ classes.settings }>
+                        <Typography color="inherit" className={ classes.text } >SETTINGS</Typography>
+                    </li>
+                    <li className={ classes.settings }>
+                        <Typography color="inherit" className={ classes.text } >MARKERS</Typography>
+                        <Slider
+                            classes={ { root: classes.slider, markLabel: classes.mark  } }
+                            value={step}
+                            getAriaValueText={valuetext}
+                            aria-labelledby="discrete-slider-custom"
+                            step={10}
+                            valueLabelDisplay="auto"
+                            marks={marks}
+                            onChange={updateStep}
+                        />
+                    </li>
+                    <Divider variant="inset" component="li" />
+
+                    <li>
+                        <Button color="inherit" classes={{ root: classes.root }} onClick={redirect}>Documentation</Button>
                     </li>
 
                 </ul>

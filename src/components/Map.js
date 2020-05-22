@@ -13,7 +13,7 @@ const geoViewport = require('@mapbox/geo-viewport');
 
 
 
-const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker}) => {
+const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker, step}) => {
   const [allMarkers, setAllMarkers] = React.useState([]);
   const [scale, setScale] = React.useState(1);
   const [mapBounds, setMapBounds] = React.useState({});
@@ -26,7 +26,7 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker}) => {
       return e.location;
     });
     setAllMarkers(c);
-    setScale(Math.round(c.length/100));
+    setScale(Math.round(c.length/step));
   }
 
   const getBounds = () => {
@@ -36,7 +36,7 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker}) => {
     setMapBounds(geoViewport.viewport(newBounds, mapDim));
   }
 
-  useEffect(getLoc,[markers]);
+  useEffect(getLoc,[markers, step]);
   useEffect(getBounds, [bounds]);
 
 	return (
