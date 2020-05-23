@@ -94,9 +94,6 @@ export const serializeObjv2 = (markers, activity) => {
 	var sections = getAllIndexes(points, null);
 	var sequences = splitSeqential(sections);
 	var firstLast = getFirstAndLast(sequences);
-	
-	console.log(times);
-	console.log(points)
 
 	
 	for (var i = 0; i < firstLast.length; i++) {

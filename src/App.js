@@ -34,7 +34,7 @@ export default function App() {
 	    var reader = new FileReader();
 
 	    //IF GPX FILE.
-	    if (file[0].type === 'application/gpx+xml') {
+	    if (file[0].path.split(".")[1] === 'gpx') {
 		    reader.onload = (function(theFile) {
 		        return function(e) {
 
@@ -69,7 +69,7 @@ export default function App() {
 		    reader.readAsText(file[0]);
 	   	}
 	   	//IF FIT FILE
-	   	else if (file[0].type === ''){
+	   	else if (file[0].path.split(".")[1] === 'fit'){
 		    reader.onload = (function(theFile) {
 		        return function(e) {
 

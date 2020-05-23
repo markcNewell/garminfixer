@@ -76,12 +76,18 @@ const useStyles = makeStyles({
         lineHeight: 1.75,
         marginTop: 10
     },
+    subtext: {
+        marginLeft: 20,
+        fontSize: "0.75rem"
+    },
     slider: {
-        margin: "20px 0px 20px 20px",
-        width: 180,
+        margin: "20px 0px 20px 40px",
+        width: 160,
     },
     mark: {
-        color: "#ACACAC"
+        letterSpacing: 2,
+        fontSize: "0.5rem",
+        fontWeight: 500,
     }
 });
 
@@ -89,20 +95,16 @@ const useStyles = makeStyles({
 const marks = [
   {
     value: 0,
-    label: 'none',
+    label: '0',
   },
   {
     value: 100,
     label: '100',
-  },
-  {
-    value: 200,
-    label: 'max',
-  },
+  }
 ];
 
 function valuetext(value) {
-  return `${value}°C`;
+  return `${value}`;
 }
 
 const ConsoleNav = ({onSave, step, setStep}) => {
@@ -163,7 +165,7 @@ const ConsoleNav = ({onSave, step, setStep}) => {
                         <Typography color="inherit" className={ classes.text } >SETTINGS</Typography>
                     </li>
                     <li className={ classes.settings }>
-                        <Typography color="inherit" className={ classes.text } >MARKERS</Typography>
+                        <Typography color="inherit" className={ `${classes.text} ${classes.subtext}` } >MARKERS</Typography>
                         <Slider
                             classes={ { root: classes.slider, markLabel: classes.mark  } }
                             value={step}
