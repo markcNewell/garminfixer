@@ -7,7 +7,7 @@ import Draw from './components/Draw';
 import {SportsLib} from '@sports-alliance/sports-lib';
 import { saveAs } from 'file-saver';
 
-import { serializeObj } from './utils/gpxSerializer';
+import { serializeObjv2 } from './utils/gpxSerializer';
 
 
 
@@ -183,9 +183,6 @@ export default function App() {
 			return null;
 		});
 
-		//ADD FIRST AND LAST INCASE THOSE ARE THE ERRORS
-		errors.push(0);
-		errors.push(lat.length-1);
 		return errors;
 	};
 
@@ -195,7 +192,7 @@ export default function App() {
 
 
 	const onSave = () => {
-		var obj = serializeObj(event, markers);
+		var obj = serializeObjv2(markers, event.getActivities()[0]);
 
 		var blob = new Blob([obj], {type: "application/gpx+xml;charset=utf-8"});
 		saveAs(blob, "StravaFixer.gpx");

@@ -1,46 +1,137 @@
 const { buildGPX, GarminBuilder } = require('gpx-builder');
 const { Point } = GarminBuilder.MODELS;
 
-
-export const serializeObj = (obj, markers) => {
-
-	var ele = obj.getActivities()[0].getStream('Altitude').data.filter((e) => {return e});
-	var time = obj.getActivities()[0].generateTimeStream().data.filter((e) => {return e});
-	time.unshift(0);
+const _ = require('underscore');
 
 
-	var starttime = obj.getActivities()[0].startDate;
-	var average_speed = obj.getActivities()[0].getStat('Average Speed').value; //km/s
+const getEnd = (arr) => {
+	return getStart(arr.slice(0).reverse());
+}
 
 
-	var sinceLastRealPoint = 0;
-	var pointsAdded = 0;
-	var points = [];
-	for (var i in markers) {
-		var lat = markers[i].location[0];
-		var long = markers[i].location[1];
+const getStart = (arr) => {
+	var start = 0;
+	var started = false;
 
-		if (markers[i].userDefined) {
-			sinceLastRealPoint += 1;
-			pointsAdded += 1;
+	arr.slice(0).map( (m,i) => {
+		if (!m.userDefined) {
+			if (!started) {
+				started = true;
+			}
 		}
 		else {
-			sinceLastRealPoint = 0;
+			if (!started) {
+				start += 1
+			}
+		}
+	});
+	return start;
+}
+
+function getAllIndexes(arr, val) {
+    var indexes = [], i;
+    for(i = 0; i < arr.length; i++)
+        if (arr[i] === val)
+            indexes.push(i);
+    return indexes;
+}
+
+
+function splitSeqential(origin) {
+	var c = 0, result = _.values( _.groupBy(origin, function(el, i, arr) { 
+  		return i ? c+= (1 !== el - arr[i-1]) : 0; }) );
+
+	return result;
+}
+
+function getFirstAndLast(seq) {
+	var c = [];
+	for (var s in seq) {
+		c.push([seq[s][0], seq[s][seq[s].length-1]])
+	}
+	return c;
+}
+
+
+
+export const serializeObjv2 = (markers, activity) => {
+
+	//LOOP THROUGH MARKERS, ASSIGN THE ONES THAT ARE NOT USER DEFINED TO THEIR TIMES
+	var elevations = activity.getStream('Altitude').data.filter((e) => {return e});
+	var times = activity.generateTimeStream().data.filter((e) => {return e}).unshift(0);
+	var starttime = activity.startDate;
+	var endtime = activity.endDate;
+	var average_speed = activity.getStat('Average Speed').value; //km/s
+
+
+
+	//var end = times.length - getEnd(markers);
+	//var start = getStart(markers);
+
+
+	var ri = 0;
+	var points = markers.map((m,i) => {
+
+		if (!m.userDefined) {
+
+			ri += 1;
+			return createPoint(
+				m.location[0],
+				m.location[1],
+				elevations[ri],
+				times[ri],
+				starttime);
+		}
+		else {
+			return null;
+		}
+	});
+
+
+	
+	//GET POINTS AT END OF USER DEFINED MARKERS
+	var sections = getAllIndexes(points, null);
+	var sequences = splitSeqential(sections);
+	var firstLast = getFirstAndLast(sequences);
+	
+
+	
+	for (var i = 0; i < firstLast.length; i++) {
+		var start = firstLast[i][0] - 1;
+		var end = firstLast[i][1] + 1;
+
+		var whole_time = points[start].time - points[end].time;
+		var whole_distance = 0;
+
+
+		//CALCULATE WHOLE DISTANCE FROM TWO PREDEFINED POINTS
+
+		var last = markers[start].location;
+		for (var j = start+1; j < end-1; j++) {
+			whole_distance += getDistanceFromLatLonInKm(last[0], last[1], markers[j].location[0], markers[j].location[1]);
 		}
 
-		var index = i - (sinceLastRealPoint + pointsAdded);
-		var distance = getDistanceFromLatLonInKm(lat, long, markers[i-sinceLastRealPoint].location[0], markers[i-sinceLastRealPoint].location[1])
-		var t = time[index] + (distance * average_speed);
-		//do sinceLastRealPoint distance by average speed to get new time
 
-		points.push(createPoint(lat, long, ele[index], t, starttime));
+		//CALCULATE NEW TIME RATIOS FOR POINTS
+		last = markers[start].location;
+		for (j = start+1; j < end-1; j++) {
+			var currentDistance = getDistanceFromLatLonInKm(last[0], last[1], markers[j].location[0], markers[j].location[1]);
+			var diffTime = (currentDistance/whole_distance) * whole_time;
+			var newTime = points[j-1].time + diffTime;
+
+			points[j] = createPoint(
+				markers[j].location[0],
+				markers[j].location[1],
+				elevations[start],
+				newTime,
+				starttime);
+		}
+
 	}
 
-
-	const gpxData = new GarminBuilder();
-	gpxData.setSegmentPoints(points);
-
-	return buildGPX(gpxData.toObject())
+	console.log(firstLast);
+	console.log(points);
+	createPoint(3,4,21,21,12);
 
 };
 
