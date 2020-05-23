@@ -48,7 +48,7 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker, step}) => {
       <ZoomControl position={'topright'} />
       {markers.map((point,index) => (
         (!point.userDefined) ? [
-          (index%scale === 0 || point.possibleError) ? [
+          (point.possibleError) ? [
             <CircleMarker
               key={index}
               marker_index={index}
@@ -73,6 +73,7 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker, step}) => {
       <Polyline
         positions={allMarkers}
         color={'red'}
+        onClick={console.log}
       />
 
 

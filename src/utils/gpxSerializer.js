@@ -58,7 +58,8 @@ export const serializeObjv2 = (markers, activity) => {
 
 	//LOOP THROUGH MARKERS, ASSIGN THE ONES THAT ARE NOT USER DEFINED TO THEIR TIMES
 	var elevations = activity.getStream('Altitude').data.filter((e) => {return e});
-	var times = activity.generateTimeStream().data.filter((e) => {return e}).unshift(0);
+	var times = activity.generateTimeStream().data.filter((e) => {return e});
+	times.unshift(0);
 	var starttime = activity.startDate;
 	var endtime = activity.endDate;
 	var average_speed = activity.getStat('Average Speed').value; //km/s
@@ -73,14 +74,14 @@ export const serializeObjv2 = (markers, activity) => {
 	var points = markers.map((m,i) => {
 
 		if (!m.userDefined) {
-
-			ri += 1;
-			return createPoint(
+			var p = createPoint(
 				m.location[0],
 				m.location[1],
 				elevations[ri],
 				times[ri],
 				starttime);
+			ri += 1;
+			return p;
 		}
 		else {
 			return null;
@@ -94,44 +95,46 @@ export const serializeObjv2 = (markers, activity) => {
 	var sequences = splitSeqential(sections);
 	var firstLast = getFirstAndLast(sequences);
 	
+	console.log(times);
+	console.log(points)
 
 	
 	for (var i = 0; i < firstLast.length; i++) {
-		var start = firstLast[i][0] - 1;
+		var start = firstLast[i][0];
 		var end = firstLast[i][1] + 1;
 
-		var whole_time = points[start].time - points[end].time;
+		var whole_time = points[start-1].time - points[end].time;
 		var whole_distance = 0;
 
 
 		//CALCULATE WHOLE DISTANCE FROM TWO PREDEFINED POINTS
 
-		var last = markers[start].location;
-		for (var j = start+1; j < end-1; j++) {
+		var last = markers[start-1].location;
+		for (var j = start; j < end; j++) {
 			whole_distance += getDistanceFromLatLonInKm(last[0], last[1], markers[j].location[0], markers[j].location[1]);
 		}
 
 
 		//CALCULATE NEW TIME RATIOS FOR POINTS
 		last = markers[start].location;
-		for (j = start+1; j < end-1; j++) {
+		for (j = start; j < end; j++) {
 			var currentDistance = getDistanceFromLatLonInKm(last[0], last[1], markers[j].location[0], markers[j].location[1]);
 			var diffTime = (currentDistance/whole_distance) * whole_time;
-			var newTime = points[j-1].time + diffTime;
+			var newTime = points[j-1].time.getTime() + (diffTime * 1000);
 
-			points[j] = createPoint(
+			points[j] = createPointNoRef(
 				markers[j].location[0],
 				markers[j].location[1],
 				elevations[start],
-				newTime,
-				starttime);
+				newTime);
 		}
 
 	}
 
-	console.log(firstLast);
-	console.log(points);
-	createPoint(3,4,21,21,12);
+	const gpxData = new GarminBuilder();
+	gpxData.setSegmentPoints(points);
+
+	return buildGPX(gpxData.toObject())
 
 };
 
@@ -141,6 +144,13 @@ const createPoint = (lat, long, elevation, time, starttime) => {
 	return new Point(lat, long, {
 		ele: elevation, //314.173
 		time: new Date(starttime.getTime() + (time * 1000)) //'2018-06-10T17:39:35Z'
+	})
+};
+
+const createPointNoRef = (lat, long, elevation, time) => {
+	return new Point(lat, long, {
+		ele: elevation, //314.173
+		time: new Date(time) //'2018-06-10T17:39:35Z'
 	})
 };
 

@@ -22,7 +22,7 @@ export default function App() {
 
 	const [markers, setMarkers] = React.useState([]);
 	const [bounds, setBounds] = React.useState([[36.5, -12.5],[62.5, 12.5]]);
-	const [step, setStep] = React.useState(100);
+	const [step, setStep] = React.useState(0);
 
 
 
@@ -179,6 +179,7 @@ export default function App() {
 		diff.map((e,i) => {
 			if (e > (avg + sd2)) {
 				errors.push(i);
+				errors.push(i+1);
 			}
 			return null;
 		});
