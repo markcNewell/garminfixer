@@ -56,7 +56,7 @@ export default function Overlay({onUpload, open, setOpen}) {
           filesLimit={1}
       />
       <p id="simple-modal-description" className={classes.modelText}>
-        Upload you .gpx or .fit file here
+        Upload your .gpx or .fit file here
       </p>
     </div>
   );
