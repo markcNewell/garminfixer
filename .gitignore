@@ -1,4 +1,7 @@
 # dependencies
+/samples
+
+
 /node_modules
 /.pnp
 .pnp.js

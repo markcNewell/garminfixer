@@ -7,8 +7,6 @@ import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 import theme from '../theme';
-
-import { useHistory } from 'react-router-dom';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -78,7 +76,8 @@ const useStyles = makeStyles({
     },
     subtext: {
         marginLeft: 20,
-        fontSize: "0.75rem"
+        fontSize: "0.75rem",
+        marginBottom: 10,
     },
     slider: {
         margin: "20px 0px 20px 40px",
@@ -111,8 +110,6 @@ const ConsoleNav = ({onSave, step, setStep}) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
 
-    //const history = useHistory();
-
 
     const openDraw = () => {
         setOpen(true);
@@ -121,7 +118,7 @@ const ConsoleNav = ({onSave, step, setStep}) => {
         setOpen(false);
     };
     const redirect = () => {
-        //history.push("http://github.com/markcNewell");
+        window.location.href = "https://github.com/markcNewell/garminfixer/blob/master/README.md";
     }
     const updateStep = (e,v) => {
         setStep(v);
@@ -165,17 +162,7 @@ const ConsoleNav = ({onSave, step, setStep}) => {
                         <Typography color="inherit" className={ classes.text } >SETTINGS</Typography>
                     </li>
                     <li className={ classes.settings }>
-                        <Typography color="inherit" className={ `${classes.text} ${classes.subtext}` } >MARKERS</Typography>
-                        <Slider
-                            classes={ { root: classes.slider, markLabel: classes.mark  } }
-                            value={step}
-                            getAriaValueText={valuetext}
-                            aria-labelledby="discrete-slider-custom"
-                            step={10}
-                            valueLabelDisplay="auto"
-                            marks={marks}
-                            onChange={updateStep}
-                        />
+                        <Typography color="inherit" className={ `${classes.text} ${classes.subtext}` } >COMMING SOON</Typography>
                     </li>
                     <Divider variant="inset" component="li" />
 
@@ -192,3 +179,18 @@ const ConsoleNav = ({onSave, step, setStep}) => {
 };
 
 export default ConsoleNav;
+
+/*
+<Typography color="inherit" className={ `${classes.text} ${classes.subtext}` } >MARKERS</Typography>
+<Slider
+    classes={ { root: classes.slider, markLabel: classes.mark  } }
+    value={step}
+    getAriaValueText={valuetext}
+    aria-labelledby="discrete-slider-custom"
+    step={10}
+    valueLabelDisplay="auto"
+    marks={marks}
+    onChange={updateStep}
+/>
+</li>
+*/
