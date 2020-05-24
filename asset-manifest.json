@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/gpx-fill/static/css/main.671eb741.chunk.css",
-    "main.js": "/gpx-fill/static/js/main.7cca281a.chunk.js",
-    "main.js.map": "/gpx-fill/static/js/main.7cca281a.chunk.js.map",
-    "runtime-main.js": "/gpx-fill/static/js/runtime-main.943b13de.js",
-    "runtime-main.js.map": "/gpx-fill/static/js/runtime-main.943b13de.js.map",
-    "static/js/2.f1e69228.chunk.js": "/gpx-fill/static/js/2.f1e69228.chunk.js",
-    "static/js/2.f1e69228.chunk.js.map": "/gpx-fill/static/js/2.f1e69228.chunk.js.map",
-    "index.html": "/gpx-fill/index.html",
-    "precache-manifest.00c0169f7100df1de1845b13d57d833a.js": "/gpx-fill/precache-manifest.00c0169f7100df1de1845b13d57d833a.js",
-    "service-worker.js": "/gpx-fill/service-worker.js",
-    "static/css/main.671eb741.chunk.css.map": "/gpx-fill/static/css/main.671eb741.chunk.css.map",
-    "static/js/2.f1e69228.chunk.js.LICENSE.txt": "/gpx-fill/static/js/2.f1e69228.chunk.js.LICENSE.txt"
+    "main.css": "/garminfixer/static/css/main.671eb741.chunk.css",
+    "main.js": "/garminfixer/static/js/main.c637f2f8.chunk.js",
+    "main.js.map": "/garminfixer/static/js/main.c637f2f8.chunk.js.map",
+    "runtime-main.js": "/garminfixer/static/js/runtime-main.68fe3f82.js",
+    "runtime-main.js.map": "/garminfixer/static/js/runtime-main.68fe3f82.js.map",
+    "static/js/2.9a549fb9.chunk.js": "/garminfixer/static/js/2.9a549fb9.chunk.js",
+    "static/js/2.9a549fb9.chunk.js.map": "/garminfixer/static/js/2.9a549fb9.chunk.js.map",
+    "index.html": "/garminfixer/index.html",
+    "precache-manifest.f99f0b059d471e70b981c5488b85cf3b.js": "/garminfixer/precache-manifest.f99f0b059d471e70b981c5488b85cf3b.js",
+    "service-worker.js": "/garminfixer/service-worker.js",
+    "static/css/main.671eb741.chunk.css.map": "/garminfixer/static/css/main.671eb741.chunk.css.map",
+    "static/js/2.9a549fb9.chunk.js.LICENSE.txt": "/garminfixer/static/js/2.9a549fb9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.943b13de.js",
-    "static/js/2.f1e69228.chunk.js",
+    "static/js/runtime-main.68fe3f82.js",
+    "static/js/2.9a549fb9.chunk.js",
     "static/css/main.671eb741.chunk.css",
-    "static/js/main.7cca281a.chunk.js"
+    "static/js/main.c637f2f8.chunk.js"
   ]
 }
