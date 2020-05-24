@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/garminfixer/static/css/main.671eb741.chunk.css",
-    "main.js": "/garminfixer/static/js/main.c637f2f8.chunk.js",
-    "main.js.map": "/garminfixer/static/js/main.c637f2f8.chunk.js.map",
+    "main.js": "/garminfixer/static/js/main.57328481.chunk.js",
+    "main.js.map": "/garminfixer/static/js/main.57328481.chunk.js.map",
     "runtime-main.js": "/garminfixer/static/js/runtime-main.68fe3f82.js",
     "runtime-main.js.map": "/garminfixer/static/js/runtime-main.68fe3f82.js.map",
-    "static/js/2.9a549fb9.chunk.js": "/garminfixer/static/js/2.9a549fb9.chunk.js",
-    "static/js/2.9a549fb9.chunk.js.map": "/garminfixer/static/js/2.9a549fb9.chunk.js.map",
+    "static/js/2.9f731e3f.chunk.js": "/garminfixer/static/js/2.9f731e3f.chunk.js",
+    "static/js/2.9f731e3f.chunk.js.map": "/garminfixer/static/js/2.9f731e3f.chunk.js.map",
     "index.html": "/garminfixer/index.html",
-    "precache-manifest.f99f0b059d471e70b981c5488b85cf3b.js": "/garminfixer/precache-manifest.f99f0b059d471e70b981c5488b85cf3b.js",
+    "precache-manifest.4840998bf5bd14ac0f208654dff8b6e0.js": "/garminfixer/precache-manifest.4840998bf5bd14ac0f208654dff8b6e0.js",
     "service-worker.js": "/garminfixer/service-worker.js",
     "static/css/main.671eb741.chunk.css.map": "/garminfixer/static/css/main.671eb741.chunk.css.map",
-    "static/js/2.9a549fb9.chunk.js.LICENSE.txt": "/garminfixer/static/js/2.9a549fb9.chunk.js.LICENSE.txt"
+    "static/js/2.9f731e3f.chunk.js.LICENSE.txt": "/garminfixer/static/js/2.9f731e3f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.68fe3f82.js",
-    "static/js/2.9a549fb9.chunk.js",
+    "static/js/2.9f731e3f.chunk.js",
     "static/css/main.671eb741.chunk.css",
-    "static/js/main.c637f2f8.chunk.js"
+    "static/js/main.57328481.chunk.js"
   ]
 }
