@@ -6,6 +6,7 @@ A small web application to fix errors in the latitude and longitude values for g
 File types supported for input:
 - `.fit`
 - `.gpx`
+
 File types supported for output:
 - `.gpx`
 - More coming
