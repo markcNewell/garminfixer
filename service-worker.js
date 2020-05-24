@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/garminfixer/precache-manifest.4840998bf5bd14ac0f208654dff8b6e0.js"
+  "/garminfixer/precache-manifest.6a9a3641134a6c3877862122871d4ed3.js"
 );
 
 self.addEventListener('message', (event) => {

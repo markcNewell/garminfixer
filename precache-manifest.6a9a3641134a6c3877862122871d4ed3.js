@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0a0d9e8c2a00cb19b5d1e3bc0e0227b1",
+    "revision": "84d09e6b45e2b334dd09c4c342ff13e3",
     "url": "/garminfixer/index.html"
   },
   {
-    "revision": "86340d61fbced4bba6d4",
+    "revision": "47b914df54283648193b",
     "url": "/garminfixer/static/css/main.671eb741.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/garminfixer/static/js/2.9f731e3f.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "86340d61fbced4bba6d4",
-    "url": "/garminfixer/static/js/main.57328481.chunk.js"
+    "revision": "47b914df54283648193b",
+    "url": "/garminfixer/static/js/main.3d507ff7.chunk.js"
   },
   {
     "revision": "1a143abf2cbfd48f27a5",
