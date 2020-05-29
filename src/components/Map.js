@@ -49,13 +49,21 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker, step}) => {
       {markers.map((point,index) => (
         (!point.userDefined) ? [
           (point.possibleError) ? [
-            <CircleMarker
+            <Polyline
+              positions={[markers[index].location,markers[index+1].location]}
+              color={'blue'}
               key={index}
               marker_index={index}
-              center={point.location}
-              radius={5}
+              weight={5}
+            />,
+            <Polyline
+              positions={[markers[index].location,markers[index+1].location]}
+              color={'blue'}
               onClick={addUserMarker}
-              color={point.possibleError ? 'red' : 'blue'}
+              key={index}
+              marker_index={index}
+              weight={25}
+              opacity={0}
             />
           ]:[]
         ] : [
@@ -66,6 +74,22 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker, step}) => {
           draggable={true}
           onDragend={updateUserMarkers}
           icon={greenIcon}
+        />,
+        <Polyline
+          positions={[markers[index].location,markers[index+1].location]}
+          color={'blue'}
+          key={index}
+          marker_index={index}
+          weight={5}
+        />,
+        <Polyline
+          positions={[markers[index].location,markers[index+1].location]}
+          color={'blue'}
+          onClick={addUserMarker}
+          key={index}
+          marker_index={index}
+          weight={25}
+          opacity={0}
         />
         ]  
       ))}
@@ -73,7 +97,6 @@ const GPXMap = ({markers, bounds, updateUserMarkers, addUserMarker, step}) => {
       <Polyline
         positions={allMarkers}
         color={'red'}
-        onClick={console.log}
       />
 
 

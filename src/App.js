@@ -114,8 +114,8 @@ export default function App() {
 		//CREATE NEW ERROR
 		var marker = {
 			userDefined: true,
-			location: [e.target.options.center[0],e.target.options.center[1]],
-			possibleError: false
+			location: [e.latlng.lat,e.latlng.lng],
+			possibleError: true
 		}
 
 
@@ -179,7 +179,6 @@ export default function App() {
 		diff.map((e,i) => {
 			if (e > (avg + sd2)) {
 				errors.push(i);
-				errors.push(i+1);
 			}
 			return null;
 		});

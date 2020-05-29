@@ -17,8 +17,8 @@ Hence, this web app has been made for you to load in files from your garmin and 
 
 ## How to use? ##
 - Load in your activity file.
-- See your activity displayed on the map. The error should be obvious as it will be a straight line between two far apart points.
-- Click on the 'before' node to create new intermediate nodes.
+- See your activity displayed on the map. The error should be obvious as it will be a straight line coloured in blue.
+- Click on the line to create new intermediate nodes.
 - Drag these intermediate nodes around to the route you actually took.
 - Save the resulting activity.
 - Load into Strava.
