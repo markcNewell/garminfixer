@@ -15,6 +15,9 @@ File types supported for output:
 For example when you stop your garmin for a cafe stop but forget to restart it. You can't be loosing out on those precious miles when uploaded to Strava. 
 Hence, this web app has been made for you to load in files from your garmin and correct them before exporting and loading into Strava for the world to see.
 
+## Demo ##
+<a>https://markcnewell.github.io/garminfixer/#/</a>
+
 ## How to use? ##
 - Load in your activity file.
 - See your activity displayed on the map. The error should be obvious as it will be a straight line coloured in blue.
